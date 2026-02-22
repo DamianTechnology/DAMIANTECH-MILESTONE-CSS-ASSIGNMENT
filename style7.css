@@ -1,0 +1,479 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+
+/* making use of :where to allow for low specificity making it easy to override */
+
+
+/* 1. border-box for box model */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. remove default margin 
+padding is optional but i do this because of lists*/
+
+:where(:not(dialog)) {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 3. great for in-page linking */
+@media(prefers-reduced-motion:no-preference) {
+    :where(html) {
+        scroll-behavior: smooth;
+    }
+}
+
+/* 4. line height and text rendering improvement */
+:where(html) {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* 5. ensure full viewport height */
+:where(html, body) {
+    min-block-size: 100%;
+}
+
+/* 6. improve line wrapping */
+:where(h1, h2, h3,
+    h4, h5, h6) {
+    text-wrap: balance;
+}
+
+:where(p) {
+    text-wrap: pretty;
+}
+
+:where(figure)>:where(figcaption) {
+    text-wrap: balance;
+}
+
+:where(p, h1, h2, h3,
+    h4, h5, h6) {
+    overflow-wrap: break-word;
+}
+
+
+
+/* 7. making media elements block-level */
+:where(img,
+    svg,
+    video,
+    canvas,
+    picture,
+    audio,
+    iframe,
+    embed,
+    object) {
+    display: block
+}
+
+:where(img, svg, video, canvas, picture) {
+    block-size: auto;
+    max-inline-size: 100%
+}
+
+/* 8. inherit font and letter spacing for form controls */
+:where(input,
+    button,
+    textarea,
+    select),
+:where(input[type=file])::-webkit-file-upload-button {
+    font: inherit;
+    letter-spacing: inherit
+}
+
+/* 9. textarea can only resized vertically and will grow to adjust its content */
+:where(textarea) {
+    resize: vertical;
+   field-sizing: content;
+}
+
+/* 10. table */
+:where(table) {
+    width: fit-content;
+    border-collapse: collapse;
+}
+
+:where(pre) {
+    direction: ltr;
+    max-inline-size: max-content;
+    min-inline-size: 0;
+    white-space: pre;
+    writing-mode: lr
+}
+
+:where(a[href],
+    area,
+    button,
+    input:not([type=text],
+        [type=email],
+        [type=number],
+        [type=password],
+        [type=""],
+        [type=tel],
+        [type=url]),
+    label[for],
+    select,
+    summary,
+    [tabindex]:not([tabindex*="-"],
+        pre)) {
+    cursor: pointer
+}
+
+/*  this will disable additional non-standard gestures such as double-tap to zoom*/
+:where(a[href],
+    area,
+    button,
+    input,
+    label[for],
+    select,
+    summary,
+    textarea,
+    [tabindex]:not([tabindex*="-"])) {
+    touch-action: manipulation
+}
+
+
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  background-color: #f8fafc;
+  
+}
+
+/* =========================
+   GLOBAL SECTION SPACING
+========================= */
+header,
+.hero,
+main,
+footer {
+  padding: 80px 5%;
+}
+
+/* =========================
+   HEADER
+========================= */
+.site-header {
+  background: #051540;
+  color: #fff;
+  padding: 20px 5%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+h2 {
+  letter-spacing: 1px;
+  color: #220db3;
+}
+
+.logo-text small {
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  min-height: 80vh;
+  background-color: #051540;
+  color: #fff;
+  min-height: 60vh;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  margin-bottom: 30px;
+  opacity: 0.85;
+}
+
+.hero-image img {
+  width: 1600px;
+  height: 1010px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+  display: inline-block;
+  width: 160px;
+  text-align: center;
+}
+
+.btn-primary {
+  background: #1e62ff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #0f75d8;
+}
+
+.btn-secondary {
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #fff;
+  color: #0b1c2d;
+}
+
+
+
+/* ======================
+DATA INSIGHT SECTION */
+
+.data-insight {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+
+}
+
+iframe {
+  width: 1440px;
+  height: 900px;
+  border-radius: 20px;
+}
+
+
+
+
+
+/* =========================
+   PLANET IMAGE GRID
+========================= */
+
+hr {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: #F2F7FF;
+  opacity: 0.1;
+}
+
+ main #planet-section {
+  background: #F2F7FF;
+
+}
+
+.planet-intro {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.planet-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.planet-grid img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 18px;
+  transition: transform 0.3s ease;
+}
+
+.planet-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* =========================
+   FACTS TABLE (GRID VERSION)
+========================= */
+
+/* =============================== MAIN GRID STRUCTURE ================================= */ 
+.info { margin-top: 10px; margin-bottom: 40px; 
+} 
+
+.facts-source { margin-bottom: 15px; 
+} 
+
+.grid-container { display: grid; grid-template-columns: 250px 1fr;
+
+   grid-template-rows: auto auto; max-width: 1100px; 
+   background: white; 
+   border-radius: 15px; overflow: hidden;
+    margin-bottom: 50px; 
+  } 
+
+/* =============================== SIDEBAR ================================= */ 
+.sidebar { grid-column: 1;
+   grid-row:2; 
+   display: grid;
+    grid-template-rows: 300px 300px 72px;
+     background: #b7c6dc; 
+} 
+
+.category { display: flex; 
+  align-items: center; 
+  justify-content: center;
+   font-weight: bold;
+    border: 1px solid #e0e6f0;
+     padding: 20px;
+     }
+      /* Jovian Nested Layout */ 
+.jovian-wrapper { display: grid;
+   grid-template-columns: 1fr 1fr;
+  }
+
+  .jovian { border-right: 1px solid #e0e6f0;
+
+  } 
+
+  .giants { display: grid;
+   grid-template-rows: 1fr 1fr;
+
+  }
+  .gas { border-bottom: 1px solid #e0e6f0; 
+  
+  }
+  
+  /* =============================== HEADER ================================= */ 
+  .head { grid-column: 1/ span 2;
+  grid-row: 1;
+  display: grid;
+  grid-template-columns:250px repeat(5, 1fr);
+  background: #1f4fa3; 
+  color: white; font-weight: bold;
+ } 
+ 
+ .head div { padding: 15px;
+   text-align: center;
+    border: 1px solid #2c5ec4;
+   }
+   
+   /* =============================== TABLE CONTENT ================================= */ 
+   .table-content { grid-column: 2;
+  grid-row: 2; 
+  display: grid; 
+  grid-template-columns: repeat(5, 1fr); 
+}
+.table-content div { padding: 15px;
+   text-align: center; 
+   border: 1px solid #ddd;
+
+   }
+
+
+/* =========================
+   CONTACT SECTION
+========================= */
+#contact-section { margin-top: 70px;
+ }
+
+.contact-form { display: grid;
+   grid-template-columns: repeat(2, 1fr);
+    gap: 40px;  
+     max-width: 900px;
+    
+    }
+
+    .form-group { display: flex;
+       flex-direction: column;
+       }
+  .faint { font-weight:light; 
+    margin-top: 10px;
+   }
+  
+
+.contact-form input, .contact-form select, .contact-form textarea {
+   padding: 12px;
+   border-radius: 8px; border: 1px solid #ccc;
+  
+  }
+
+
+  .contact-form textarea {
+  min-height: 140px;
+  resize: none;
+  min-width: 457px;
+}
+
+.group-radio { gap: 5px;  
+display:flex;
+flex-direction: column;
+}
+
+.contact-form button {
+  grid-column: span 2;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1e62ff;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s
+}
+/* =========================
+   FOOTER
+========================= */
+.footer-section {
+  background: #0b1c2d;
+  color: #fff;
+  padding: 60px 5%;
+}
+
+.footer-container {
+  margin: 0 auto;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
